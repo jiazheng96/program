@@ -1,11 +1,11 @@
-import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './index.css'
 
 const { Header, Content, Footer, Sider } = Layout;
-const page = ['首页', '详情', '本身', '图表']
+const page = ['首页', '详情', '格式化', '其他']
 const routes = ['/home', '/detail/:id', '/' , '/echart']
 const Basic = (props) => {
   console.log(props);
@@ -25,7 +25,7 @@ const Basic = (props) => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['/echart']}
+          defaultSelectedKeys={['4']}
           items={[UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
             (icon, index) => ({
               key: `${routes[index]}`,
@@ -54,7 +54,7 @@ const Basic = (props) => {
               minHeight: 360,
             }}
           >
-            <Outlet/>
+            {props.children}
           </div>
         </Content>
         <Footer
