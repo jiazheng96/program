@@ -1,10 +1,21 @@
+import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
-import React from 'react';
+import { connect } from 'react-redux'
+import { LoginApi } from '../../utils/api'
+import { loginHome } from '../../action/login';
 
-const Login = () => {
-  const onFinish = (values) => {
+const Login = (props) => {
+  console.log(props);
+  const onFinish = async (values) => {
     console.log('Received values of form: ', values);
+    // LoginApi(values).then(res => {
+    //   if(res.errCode === 0) {
+    //     props.loginHome(res.data['cms-token'])
+    //   }
+    // })
+      const res = props.loginHome(values);
+      console.log(res);
   };
 
   return (
@@ -62,4 +73,11 @@ const Login = () => {
   );
 };
 
-export default Login
+export default connect(
+  state => ({
+    token: state
+  }),
+  {
+    loginHome
+  }
+)(Login)

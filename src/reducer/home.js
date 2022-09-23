@@ -6,8 +6,10 @@ const defaultValue = {
 function home (state = defaultValue, action) {
     switch(action.type) {
         case GET_TOKEN:
+            console.log(action.payload);
             return { ...state, token: action.payload }
         default:
             return state
     }
 }
+export default home;
